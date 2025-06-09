@@ -41,7 +41,7 @@ void progress_bar::clear()
 
 ## How to use
 
-The library is in a header-only library style, i.e., there is nothing to build, you only have to include the <a href="mtxdat-library.hpp">*mtxdat-library.hpp*</a> file into your project.
+The library is in a header-only library style, i.e., there is nothing to build, you only have to include the <a href="console-progress-bar-library.hpp">*console-progress-bar-library.hpp*</a> file into your project.
 
 ## A simple example
 
@@ -50,7 +50,7 @@ The library is in a header-only library style, i.e., there is nothing to build, 
 ```
 #include <iostream>
 #include <unistd.h> // Required for 'sleep()'
-#include "console-progress-bar.hpp"
+#include "console-progress-bar-library.hpp"
 
 int main()
 {
