@@ -1,7 +1,7 @@
 # Console Progress Bar library: A C++ library for printing the progress of numeric iterations on the console
 
 <p align="center" width="100%">
-    <img src="https://github.com/jodesarro/console-progress-bar-library/blob/main/illustration.gif">
+    <img src="https://github.com/jodesarro/console-progress-bar-library/blob/main/illustration.gif?raw=true">
 </p>
 
 ## Available functions
@@ -31,22 +31,23 @@ double get_current_percentage()
 void clear()
 ```
 
-### Styling: Set the bar size
+### Styling
+#### Set the bar size
 ```
 void set_bar_size(unsigned int bar_size)
 ```
 
-### Styling: Set the bar delimiters
+#### Set the bar delimiters
 ```
 void set_bar_delimiters(std::string left_delimiter_char, std::string right_delimiter_char)
 ```
 
-### Styling: Set the bar fillers
+#### Set the bar fillers
 ```
 void set_bar_fillers(std::string fill_char, std::string blank_char)
 ```
 
-### Note
+#### Note
 
 Notice that although `fill_char`, `blank_char`, `left_delimiter_char` and `right_delimiter_char` are declared as `std::string`, each one must be a single character that occupies a single space on the console, or an empty string (`""`).
 
@@ -97,7 +98,7 @@ int main()
 
 ### Output
 
-![Illustration](https://github.com/jodesarro/console-progress-bar-library/blob/main/example.gif)
+![Illustration](https://github.com/jodesarro/console-progress-bar-library/blob/main/example.gif?raw=true)
 
 ### Some interesting Unicode characters for progress bars
 █, ░, ⚫, ⚪, ■, ▰, ▱, ...
