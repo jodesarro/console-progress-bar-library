@@ -23,9 +23,10 @@ public:
         else
         {
             _current_bar_size = _bar_size;
-            _current_percentage = 100.0;
+            _current_percentage = 100.00;
         }
-        std::cout << "\r" << "Progress: " << _left_delimiter_char;
+        clear();
+        std::cout << "Progress: " << _left_delimiter_char;
         for ( int i=0; i<_current_bar_size; i++)
         {
             std::cout << _fill_char;
@@ -35,7 +36,7 @@ public:
             std::cout << _blank_char;
         }
         std::cout << _right_delimiter_char;
-        printf(" %.1f%%", _current_percentage);
+        printf(" %.2f%%", _current_percentage);
     };
 
     void set_bar_fillers( std::string fill_char, std::string blank_char )
@@ -73,13 +74,28 @@ public:
     void clear()
     {
         int left_delimiter_char_size;
-        _left_delimiter_char = "" ? left_delimiter_char_size=0 : left_delimiter_char_size=1;
+        _left_delimiter_char == "" ? left_delimiter_char_size=0 : left_delimiter_char_size=1;
         int right_delimiter_char_size;
-        _right_delimiter_char = "" ? right_delimiter_char_size=0 : right_delimiter_char_size=1;
-        for (int i=0; i<10 + left_delimiter_char_size + _bar_size + right_delimiter_char_size + 1 + 6; i++)
+        _right_delimiter_char == "" ? right_delimiter_char_size=0 : right_delimiter_char_size=1;
+        int percentage_size;
+        if ( _current_percentage >= 100. )
         {
-            std::cout << "\b";
+            percentage_size = 6;
         }
+        else if ( _current_percentage >= 10. )
+        {
+            percentage_size = 5;
+        }
+        else
+        {
+            percentage_size = 4;
+        }
+        std::cout << "\r";
+        for (int i=0; i<10 + left_delimiter_char_size + _bar_size + right_delimiter_char_size + 1 + percentage_size + 1; i++)
+        {
+            std::cout << " ";
+        }
+        std::cout << "\r";
     };
     
 };
