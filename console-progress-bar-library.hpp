@@ -1,75 +1,85 @@
 #include <iostream>
 #include <cmath>
 
-namespace progress_bar
+class console_progress_bar
 {
+private:
+    std::string _fill_char = "=";
+    std::string _blank_char = " ";
+    std::string _left_delimiter_char = "[";
+    std::string _right_delimiter_char = "]";
+    unsigned int _bar_size = 10;
+    double _current_percentage = 0.;
+    unsigned int _current_bar_size = 0.;
 
-namespace _internal
-{
-std::string _fill_char = "=";
-std::string _empty_char = " ";
-std::string _left_delimiter_char = "[";
-std::string _right_delimiter_char = "]";
-unsigned int _bar_size = 10;
-}
-
-double current_percentage = 0.;
-
-void print(const unsigned int &current_position, const unsigned int &max_position)
-{
-    unsigned int current_bar_size;
-    if ( current_position < max_position )
+public:
+    void print( const unsigned int &current_position, const unsigned int &max_position )
     {
-       current_bar_size = int(floor(double(_internal::_bar_size)*double(current_position)/double(max_position)));
-       current_percentage = 100.*double(current_position)/double(max_position);
-    }
-    else
+        if ( current_position < max_position )
+        {
+            _current_bar_size = int(floor(double(_bar_size)*double(current_position)/double(max_position)));
+            _current_percentage = 100.*double(current_position)/double(max_position);
+        }
+        else
+        {
+            _current_bar_size = _bar_size;
+            _current_percentage = 100.0;
+        }
+        std::cout << "\r" << "Progress: " << _left_delimiter_char;
+        for ( int i=0; i<_current_bar_size; i++)
+        {
+            std::cout << _fill_char;
+        }
+        for ( int i=_current_bar_size; i<_bar_size; i++)
+        {
+            std::cout << _blank_char;
+        }
+        std::cout << _right_delimiter_char;
+        printf(" %.1f%%", _current_percentage);
+    };
+
+    void set_bar_fillers( std::string fill_char, std::string blank_char )
     {
-        current_bar_size = _internal::_bar_size;
-        current_percentage = 100.0;
-    }
-    std::cout << "\r" << "Progress: " << _internal::_left_delimiter_char;
-    for ( int i=0; i<current_bar_size; i++)
+        _fill_char = fill_char;
+        _blank_char = blank_char;
+    };
+
+    void set_bar_delimiters( std::string left_delimiter_char, std::string right_delimiter_char )
     {
-        std::cout << _internal::_fill_char;
-    }
-    for ( int i=current_bar_size; i<_internal::_bar_size; i++)
+        _right_delimiter_char = right_delimiter_char;
+        _left_delimiter_char = left_delimiter_char;
+    };
+
+    void set_bar_size( unsigned int bar_size )
     {
-        std::cout << _internal::_empty_char;
-    }
-    std::cout << _internal::_right_delimiter_char;
-    printf(" %.1f%%", current_percentage);
-}
+        _bar_size = bar_size;
+    };
 
-void style ( std::string fill_char, std::string empty_char = " ", std::string left_delimiter_char = "[", std::string right_delimiter_char = "]", unsigned int bar_size = 10 )
-{
-    _internal::_fill_char = fill_char;
-    _internal::_empty_char = empty_char;
-    _internal::_right_delimiter_char = right_delimiter_char;
-    _internal::_left_delimiter_char = left_delimiter_char;
-    _internal::_bar_size = bar_size = 10;
-}
-
-void fill()
-{
-    print(0, 0);
-}
-
-void empty()
-{
-    print(0, 1);
-}
-
-void clear()
-{
-    int left_delimiter_char_size;
-    _internal::_left_delimiter_char = "" ? left_delimiter_char_size=0 : left_delimiter_char_size=1;
-    int right_delimiter_char_size;
-    _internal::_right_delimiter_char = "" ? right_delimiter_char_size=0 : right_delimiter_char_size=1;
-    for (int i=0; i<10 + left_delimiter_char_size + _internal::_bar_size + right_delimiter_char_size + 1 + 6; i++)
+    double get_current_percentage()
     {
-        std::cout << "\b";
-    }
-}
+        return _current_percentage;
+    };
 
-}
+    void print_full()
+    {
+        print(0, 0);
+    };
+
+    void print_empty()
+    {
+        print(0, 1);
+    };
+
+    void clear()
+    {
+        int left_delimiter_char_size;
+        _left_delimiter_char = "" ? left_delimiter_char_size=0 : left_delimiter_char_size=1;
+        int right_delimiter_char_size;
+        _right_delimiter_char = "" ? right_delimiter_char_size=0 : right_delimiter_char_size=1;
+        for (int i=0; i<10 + left_delimiter_char_size + _bar_size + right_delimiter_char_size + 1 + 6; i++)
+        {
+            std::cout << "\b";
+        }
+    };
+    
+};
