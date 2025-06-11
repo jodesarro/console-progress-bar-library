@@ -23,7 +23,7 @@ public:
         else
         {
             _current_bar_size = _bar_size;
-            _current_percentage = 100.00;
+            _current_percentage = 100.;
         }
         clear();
         std::cout << "Progress: " << _left_delimiter_char;
@@ -90,12 +90,10 @@ public:
         {
             percentage_size = 4;
         }
-        std::cout << "\r";
         for (int i=0; i<10 + left_delimiter_char_size + _bar_size + right_delimiter_char_size + 1 + percentage_size + 1; i++)
         {
-            std::cout << " ";
+            std::cout << "\b \b";
         }
-        std::cout << "\r";
     };
     
 };
