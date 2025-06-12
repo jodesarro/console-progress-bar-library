@@ -26,30 +26,34 @@ void print_empty()
 double get_current_percentage()
 ```
 
-### Clearing the progress bar out of the console
+### Erasing the progress bar out of the console
 ```
-void clear()
+void erase()
 ```
 
 ### Styling
-#### Set the bar size
+
+The implementation of the progress bar has a default style of the type `Progress: [=======   ] 70.00%`.
+The default style may be changed as desired through the functions listed below.
+
+#### Setting the bar size
 ```
 void set_bar_size(unsigned int bar_size)
 ```
 
-#### Set the bar delimiters
+#### Setting the bar delimiters
 ```
 void set_bar_delimiters(std::string left_delimiter_char, std::string right_delimiter_char)
 ```
 
-#### Set the bar fillers
+#### Setting the bar fillers
 ```
-void set_bar_fillers(std::string fill_char, std::string blank_char)
+void set_bar_fillers(std::string filler_char, std::string blanker_char)
 ```
 
 #### Note
 
-Notice that although `fill_char`, `blank_char`, `left_delimiter_char` and `right_delimiter_char` are declared as `std::string`, each one must be a single character that occupies a single space on the console, or an empty string (`""`).
+Notice that although `filler_char`, `blanker_char`, `left_delimiter_char` and `right_delimiter_char` are declared as `std::string`, each one must be a single character that occupies a single space on the console, otherwise they will be restored to the default style. In particular, `left_delimiter_char` and `right_delimiter_char` may be an empty string (`""`). 
 
 ## How to use
 
@@ -90,8 +94,8 @@ int main()
   // Printing a progress of 100%
   my_progress.print_full();
 
-  // Clearing the progress bar out of the console
-  my_progress.clear();
+  // Erasing the progress bar out of the console
+  my_progress.erase();
 
 }
 ```
