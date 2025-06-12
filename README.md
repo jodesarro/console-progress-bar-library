@@ -53,7 +53,8 @@ void set_bar_fillers(std::string filler_char, std::string blanker_char)
 
 #### Note
 
-Notice that although `filler_char`, `blanker_char`, `left_delimiter_char` and `right_delimiter_char` are declared as `std::string`, each one must be a single character that occupies a single space on the console, otherwise they will be restored to the default style. In particular, `left_delimiter_char` and `right_delimiter_char` may be an empty string (`""`). 
+Notice that although `filler_char`, `blanker_char`, `left_delimiter_char` and `right_delimiter_char` are declared as `std::string`, each one must be a single character that occupies a single space on the console, otherwise they will be restored to the default style. In particular, `left_delimiter_char` and `right_delimiter_char` may be an empty string (`""`).
+Additionally, the value of `bar_size` should be chosen such that the total size of the progress bar does not exceed the width of the console.
 
 ## How to use
 
